@@ -1,0 +1,39 @@
+body {
+    font-family: Sans-serif;
+    background-color: #348FD4;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+}
+
+fieldset {
+    border: 3px double #333;
+    color: #000;
+}
+
+input[type=text] {
+    width: 100%;
+    border: 1px solid #333;
+    padding: 3px;
+    border-radius: 5px;
+}
+
+input[type=submit] {
+    float: right;
+}
+
+table {
+    width: 100%;
+}
+
+table th {
+    background-color: #126EB2;
+    font-size: 18px;
+}
+
+table td {
+    border-bottom: 1px solid #333;
+    color: #000;
+}
