@@ -5,26 +5,26 @@ session_start();
 include "banco.php";
 include "ajudantes.php";
 
-if (isset($_GET['nome']) && $_GET['nome'] != '') {
-    $tarefa = array();
+if (array_key_exists('nome', $_POST) && $_POST['nome'] != '') {
+    $tarefa = [];
 
-    $tarefa['nome'] = $_GET['nome'];
+    $tarefa['nome'] = $_POST['nome'];
 
-    if (isset($_GET['descricao'])) {
-        $tarefa['descricao'] = $_GET['descricao'];
+    if (array_key_exists('descricao', $_POST)) {
+        $tarefa['descricao'] = $_POST['descricao'];
     } else {
         $tarefa['descricao'] = '';
     }
 
-    if (isset($_GET['prazo'])) {
-        $tarefa['prazo'] = traduz_data_para_banco($_GET['prazo']);
+    if (array_key_exists('prazo', $_POST)) {
+        $tarefa['prazo'] = traduz_data_para_banco($_POST['prazo']);
     } else {
         $tarefa['prazo'] = '';
     }
 
-    $tarefa['prioridade'] = $_GET['prioridade'];
+    $tarefa['prioridade'] = $_POST['prioridade'];
 
-    if (isset($_GET['concluida'])) {
+    if (array_key_exists('concluida', $_POST)) {
         $tarefa['concluida'] = 1;
     } else {
         $tarefa['concluida'] = 0;

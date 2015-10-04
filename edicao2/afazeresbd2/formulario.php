@@ -1,4 +1,4 @@
-<form>
+<form method="POST">
     <input type="hidden" name="id" value="<?php echo $tarefa['id']; ?>" />
     <fieldset>
         <legend>Nova tarefa</legend>

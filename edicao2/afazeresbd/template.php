@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1>Gerenciador de Tarefas</h1>
-        <form>
+        <form method="POST">
             <fieldset>
                 <legend>Nova tarefa</legend>
                 <label>
