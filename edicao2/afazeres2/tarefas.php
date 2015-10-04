@@ -2,18 +2,18 @@
 
 session_start();
 
-if (isset($_GET['nome']) && $_GET['nome'] != '') {
-    $tarefa = array();
+if (array_key_exists('nome', $_GET) && $_GET['nome'] != '') {
+    $tarefa = [];
 
     $tarefa['nome'] = $_GET['nome'];
 
-    if (isset($_GET['descricao'])) {
+    if (array_key_exists('descricao', $_GET)) {
         $tarefa['descricao'] = $_GET['descricao'];
     } else {
         $tarefa['descricao'] = '';
     }
 
-    if (isset($_GET['prazo'])) {
+    if (array_key_exists('prazo', $_GET)) {
         $tarefa['prazo'] = $_GET['prazo'];
     } else {
         $tarefa['prazo'] = '';
@@ -21,7 +21,7 @@ if (isset($_GET['nome']) && $_GET['nome'] != '') {
 
     $tarefa['prioridade'] = $_GET['prioridade'];
 
-    if (isset($_GET['concluida'])) {
+    if (array_key_exists('concluida', $_GET)) {
         $tarefa['concluida'] = $_GET['concluida'];
     } else {
         $tarefa['concluida'] = '';
@@ -30,12 +30,10 @@ if (isset($_GET['nome']) && $_GET['nome'] != '') {
     $_SESSION['lista_tarefas'][] = $tarefa;
 }
 
-if (isset($_SESSION['lista_tarefas'])) {
+if (array_key_exists('lista_tarefas', $_SESSION)) {
     $lista_tarefas = $_SESSION['lista_tarefas'];
 } else {
-    $lista_tarefas = array();
+    $lista_tarefas = [];
 }
 
 include "template.php";
-
-?>

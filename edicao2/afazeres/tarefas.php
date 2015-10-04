@@ -18,13 +18,13 @@
             </fieldset>
         </form>
         <?php
-            if (isset($_GET['nome'])) {
+            if (array_key_exists('nome', $_GET)) {
                 $_SESSION['lista_tarefas'][] = $_GET['nome'];
             }
-            if (isset($_SESSION['lista_tarefas'])) {
+            if (array_key_exists('lista_tarefas', $_SESSION)) {
                 $lista_tarefas = $_SESSION['lista_tarefas'];
             } else {
-                $lista_tarefas = array();
+                $lista_tarefas = [];
             }
         ?>
 
