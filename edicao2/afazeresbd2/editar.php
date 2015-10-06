@@ -14,13 +14,13 @@ if (isset($_GET['nome']) && $_GET['nome'] != '') {
 
     $tarefa['nome'] = $_GET['nome'];
 
-    if (isset($_GET['descricao'])) {
+    if (array_key_exists('descricao', $_POST)) {
         $tarefa['descricao'] = $_GET['descricao'];
     } else {
         $tarefa['descricao'] = '';
     }
 
-    if (isset($_GET['prazo'])) {
+    if (array_key_exists('prazo', $_POST) && strlen($_POST['prazo']) > 0) {
         $tarefa['prazo'] = traduz_data_para_banco($_GET['prazo']);
     } else {
         $tarefa['prazo'] = '';
@@ -28,7 +28,7 @@ if (isset($_GET['nome']) && $_GET['nome'] != '') {
 
     $tarefa['prioridade'] = $_GET['prioridade'];
 
-    if (isset($_GET['concluida'])) {
+    if (array_key_exists('concluida', $_POST)) {
         $tarefa['concluida'] = 1;
     } else {
         $tarefa['concluida'] = 0;
