@@ -7,7 +7,7 @@
         <th>Concluída</th>
         <th>Opções</th>
     </tr>
-    <?php foreach ($tarefas->tarefas as $tarefa) : ?>
+    <?php foreach ($repositorio_tarefas->buscar_tarefas() as $tarefa) : ?>
         <tr>
             <td>
                 <a href="tarefa.php?id=<?php echo $tarefa['id']; ?>">

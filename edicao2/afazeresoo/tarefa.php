@@ -11,10 +11,9 @@ $tem_erros = false;
 $erros_validacao = array();
 
 if (tem_post()) {
-    // upload dos anexos
     $tarefa_id = $_POST['tarefa_id'];
 
-    if (! isset($_FILES['anexo'])) {
+    if (! array_key_exists('anexos', $_FILES)) {
         $tem_erros = true;
         $erros_validacao['anexo'] = 'Você deve selecionar um arquivo para anexar';
     } else {

@@ -154,6 +154,21 @@ function traduz_data_para_banco($data)
     return $data_mysql;
 }
 
+function traduz_data_br_para_objeto($data)
+{
+    if ($data == "") {
+        return "";
+    }
+
+    $dados = explode("/", $data);
+
+    if (count($dados) != 3) {
+        return $data;
+    }
+
+    return  DateTime::createFromFormat('d/m/Y', $data);
+}
+
 function traduz_data_para_exibir($data)
 {
     if ($data == "" OR $data == "0000-00-00") {
