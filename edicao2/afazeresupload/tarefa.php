@@ -17,7 +17,7 @@ if (tem_post()) {
         if (tratar_anexo($_FILES['anexo'])) {
             $anexo = array();
             $anexo['tarefa_id'] = $tarefa_id;
-            $anexo['nome'] = $_FILES['anexo']['name'];
+            $anexo['nome'] = substr($_FILES['anexo']['name'], 0, -4);
             $anexo['arquivo'] = $_FILES['anexo']['name'];
         } else {
             $tem_erros = true;

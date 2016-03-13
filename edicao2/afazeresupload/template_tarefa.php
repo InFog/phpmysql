@@ -28,6 +28,7 @@
                             <td><?php echo $anexo['nome']; ?></td>
                             <td>
                                 <a href="anexos/<?php echo $anexo['arquivo']; ?>">Download</a>
+                                <a href="remover_anexo.php?id=<?php echo $anexo['id']; ?>">Remover</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
