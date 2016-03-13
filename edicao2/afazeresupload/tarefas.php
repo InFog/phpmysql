@@ -6,7 +6,7 @@ include "ajudantes.php";
 $exibir_tabela = true;
 
 $tem_erros = false;
-$erros_validacao = array();
+$erros_validacao = [];
 
 if (tem_post()) {
     $tarefa = array();

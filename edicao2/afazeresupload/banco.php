@@ -9,6 +9,7 @@ $conexao = mysqli_connect($bdServidor, $bdUsuario, $bdSenha, $bdBanco);
 
 if (mysqli_connect_errno($conexao)) {
     echo "Problemas para conectar no banco. Verifique os dados!";
+    echo "Erro: " . mysqli_connect_error();
     die();
 }
 
