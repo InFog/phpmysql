@@ -28,6 +28,20 @@ function gravar_anexo($conexao, $anexo)
     mysqli_query($conexao, $sqlGravar);
 }
 
+function buscar_anexo($conexao, $id)
+{
+    $sqlBusca = 'SELECT * FROM anexos WHERE id = ' . $id;
+    $resultado = mysqli_query($conexao, $sqlBusca);
+    return mysqli_fetch_assoc($resultado);
+}
+
+function remover_anexo($conexao, $id)
+{
+    $sqlRemover = "DELETE FROM anexos WHERE id = {$id}";
+
+    mysqli_query($conexao, $sqlRemover);
+}
+
 function buscar_anexos($conexao, $tarefa_id)
 {
     $sqlBusca = "SELECT * FROM anexos WHERE tarefa_id = {$tarefa_id}";
