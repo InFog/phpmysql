@@ -1,6 +1,8 @@
 body {
     font-family: Sans-serif;
     color: #333;
+    background-color: #555;
+    font-size: 1em;
 }
 
 h1 {
@@ -12,7 +14,7 @@ h1 {
 }
 
 fieldset {
-    border: 1px solid #555;
+    border: 1px solid #333;
     color: #333;
     margin: 10px 0 0 0;
 }
@@ -24,21 +26,24 @@ label {
 
 input[type=text],
 textarea {
-    font-family: Sans-serif;
-    font-size: 1.2em;
     width: 100%;
-    border: 1px solid #555;
-    padding: 5px;
+    border: 1px solid #333;
+    padding: 0.5em;
+    font-size: 1.2em;
 }
 
 input[type=submit] {
-    margin: 10px 0 0 0;
-    font-family: Sans-serif;
-    font-size: 1em;
     float: right;
     clear: both;
-    border: 1px solid #555;
-    padding: 7px;
+    background-color: #0D68C2;
+}
+
+.botao {
+    padding: 1em;
+    color: #FFF;
+    font-weight: bold;
+    border: 0;
+    border-radius: 5px;
 }
 
 table {
@@ -47,11 +52,17 @@ table {
 
 table th {
     background-color: #EEE;
-    font-size: 1em;
-    padding: 10px;
+    font-size: 18px;
 }
 
 table td {
     border-bottom: 1px solid #333;
     color: #000;
+}
+
+#bloco_principal {
+    width: 600px;
+    background-color: #FFF;
+    padding: 1em;
+    margin: 0 auto 0 auto;
 }

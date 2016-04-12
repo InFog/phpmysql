@@ -37,8 +37,6 @@ if (tem_post()) {
             $tem_erros = true;
             $erros_validacao['prazo'] = 'O prazo não é uma data válida!';
         }
-    } else {
-        $tarefa['prazo'] = '';
     }
 
     $tarefa->setPrioridade($_POST['prioridade']);
@@ -61,6 +59,6 @@ if (tem_post()) {
     }
 }
 
-$repositorio_tarefas->buscar_tarefas();
+$tarefas = $repositorio_tarefas->buscar_tarefas();
 
 include "template.php";

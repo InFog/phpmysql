@@ -10,27 +10,27 @@
     <?php foreach ($repositorio_tarefas->buscar_tarefas() as $tarefa) : ?>
         <tr>
             <td>
-                <a href="tarefa.php?id=<?php echo $tarefa['id']; ?>">
-                    <?php echo $tarefa['nome']; ?>
+                <a href="tarefa.php?id=<?php echo $tarefa->getId(); ?>">
+                    <?php echo $tarefa->getNome(); ?>
                 </a>
             </td>
             <td>
-                <?php echo $tarefa['descricao']; ?>
+                <?php echo $tarefa->getDescricao(); ?>
             </td>
             <td>
-                <?php echo traduz_data_para_exibir($tarefa['prazo']); ?>
+                <?php echo traduz_data_para_exibir($tarefa->getPrazo()); ?>
             </td>
             <td>
-                <?php echo traduz_prioridade($tarefa['prioridade']); ?>
+                <?php echo traduz_prioridade($tarefa->getPrioridade()); ?>
             </td>
             <td>
-                <?php echo traduz_concluida($tarefa['concluida']); ?>
+                <?php echo traduz_concluida($tarefa->getConcluida()); ?>
             </td>
             <td>
-                <a href="editar.php?id=<?php echo $tarefa['id']; ?>">
+                <a href="editar.php?id=<?php echo $tarefa->getId(); ?>">
                     Editar
                 </a>
-                <a href="remover.php?id=<?php echo $tarefa['id']; ?>">
+                <a href="remover.php?id=<?php echo $tarefa->getId(); ?>">
                     Remover
                 </a>
             </td>

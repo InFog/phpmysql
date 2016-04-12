@@ -60,13 +60,13 @@ class RepositorioTarefas
         $sqlBusca = 'SELECT * FROM tarefas';
         $resultado = $this->bd->query($sqlBusca);
 
-        $this->tarefas = [];
+        $tarefas = [];
 
-        while ($tarefa = mysqli_fetch_assoc($resultado)) {
-            $this->tarefas[] = $tarefa;
+        while ($tarefa = $resultado->fetch_object('Tarefa')) {
+            $tarefas[] = $tarefa;
         }
 
-        return $this->tarefas;
+        return $tarefas;
     }
 
     function buscar_tarefa($id)

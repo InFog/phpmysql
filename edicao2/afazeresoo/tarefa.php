@@ -4,6 +4,8 @@ include "config.php";
 include "banco.php";
 include "ajudantes.php";
 include "classes/Tarefas.php";
+include "classes/Tarefa.php";
+include "classes/RepositorioTarefas.php";
 
 $tarefas = new Tarefas($mysqli);
 

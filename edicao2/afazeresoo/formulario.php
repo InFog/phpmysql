@@ -34,6 +34,6 @@
             Lembrete por e-mail:
             <input type="checkbox" name="lembrete" value="1" />
         </label>
-        <input type="submit" value="<?php echo ($tarefa->getId() > 0) ? 'Atualizar' : 'Cadastrar'; ?>" />
+        <input type="submit" value="<?php echo ($tarefa->getId() > 0) ? 'Atualizar' : 'Cadastrar'; ?>" class="botao" />
     </fieldset>
 </form>
