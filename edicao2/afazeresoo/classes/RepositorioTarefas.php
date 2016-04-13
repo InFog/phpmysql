@@ -74,6 +74,6 @@ class RepositorioTarefas
         $sqlBusca = 'SELECT * FROM tarefas WHERE id = ' . $id;
         $resultado = $this->bd->query($sqlBusca);
 
-        return mysqli_fetch_assoc($resultado);
+        return $resultado->fetch_object('Tarefa');
     }
 }

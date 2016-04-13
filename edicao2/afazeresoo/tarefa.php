@@ -7,7 +7,7 @@ include "classes/Tarefas.php";
 include "classes/Tarefa.php";
 include "classes/RepositorioTarefas.php";
 
-$tarefas = new Tarefas($mysqli);
+$repositorio_tarefas = new RepositorioTarefas($mysqli);
 
 $tem_erros = false;
 $erros_validacao = array();
@@ -35,8 +35,7 @@ if (tem_post()) {
     }
 }
 
-$tarefas->buscar_tarefa($_GET['id']);
-$tarefa = $tarefas->tarefa;
+$tarefa = $repositorio_tarefas->buscar_tarefa($_GET['id']);
 $anexos = buscar_anexos($mysqli, $_GET['id']);
 
 include "template_tarefa.php";
