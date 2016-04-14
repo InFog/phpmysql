@@ -25,9 +25,9 @@
                     </tr>
                     <?php foreach ($anexos as $anexo) : ?>
                         <tr>
-                            <td><?php echo $anexo['nome']; ?></td>
+                            <td><?php echo $anexo->getNome(); ?></td>
                             <td>
-                                <a href="anexos/<?php echo $anexo['arquivo']; ?>">Download</a>
+                                <a href="anexos/<?php echo $anexo->getArquivo(); ?>">Download</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

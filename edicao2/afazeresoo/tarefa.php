@@ -5,6 +5,7 @@ include "banco.php";
 include "ajudantes.php";
 include "classes/Tarefas.php";
 include "classes/Tarefa.php";
+include "classes/Anexo.php";
 include "classes/RepositorioTarefas.php";
 
 $repositorio_tarefas = new RepositorioTarefas($mysqli);
@@ -15,15 +16,16 @@ $erros_validacao = array();
 if (tem_post()) {
     $tarefa_id = $_POST['tarefa_id'];
 
-    if (! array_key_exists('anexos', $_FILES)) {
+    if (! array_key_exists('anexo', $_FILES)) {
         $tem_erros = true;
         $erros_validacao['anexo'] = 'Você deve selecionar um arquivo para anexar';
     } else {
-        if (tratar_anexo($_FILES['anexo'])) {
-            $anexo = array();
-            $anexo['tarefa_id'] = $tarefa_id;
-            $anexo['nome'] = $_FILES['anexo']['name'];
-            $anexo['arquivo'] = $_FILES['anexo']['name'];
+        $dados_anexo = $_FILES['anexo'];
+        if (tratar_anexo($dados_anexo)) {
+            $anexo = new Anexo();
+            $anexo->setTarefaId($tarefa_id);
+            $anexo->setNome($dados_anexo['name']);
+            $anexo->setArquivo($dados_anexo['name']);
         } else {
             $tem_erros = true;
             $erros_validacao['anexo'] = 'Envie apenas anexos nos formatos zip ou pdf';
@@ -31,11 +33,11 @@ if (tem_post()) {
     }
 
     if (! $tem_erros) {
-        gravar_anexo($mysqli, $anexo);
+        $repositorio_tarefas->gravar_anexo($anexo);
     }
 }
 
 $tarefa = $repositorio_tarefas->buscar_tarefa($_GET['id']);
-$anexos = buscar_anexos($mysqli, $_GET['id']);
+$anexos = $repositorio_tarefas->buscar_anexos($_GET['id']);
 
 include "template_tarefa.php";

@@ -76,4 +76,40 @@ class RepositorioTarefas
 
         return $resultado->fetch_object('Tarefa');
     }
+
+    function gravar_anexo(Anexo $anexo)
+    {
+        $sqlGravar = "INSERT INTO anexos
+            (tarefa_id, nome, arquivo)
+            VALUES
+            (
+                {$anexo->getTarefaId()},
+                '{$anexo->getNome()}',
+                '{$anexo->getArquivo()}'
+            )
+            ";
+
+        $this->bd->query($sqlGravar);
+    }
+
+    function buscar_anexos($tarefa_id)
+    {
+        $sqlBusca = "SELECT * FROM anexos WHERE tarefa_id = {$tarefa_id}";
+        $resultado = $this->bd->query($sqlBusca);
+
+        $anexos = array();
+
+        while ($anexo = $resultado->fetch_object('Anexo')) {
+            $anexos[] = $anexo;
+        }
+
+        return $anexos;
+    }
+
+    function remover_tarefa($mysqli, $id)
+    {
+        $sqlRemover = "DELETE FROM tarefas WHERE id = {$id}";
+
+        $mysqli->query($sqlRemover);
+    }
 }
