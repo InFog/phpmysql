@@ -2,7 +2,9 @@
 
 include "config.php";
 include "banco.php";
+include "classes/RepositorioTarefas.php";
 
-remover_tarefa($mysqli, $_GET['id']);
+$repositorio_tarefas = new RepositorioTarefas($mysqli);
+$repositorio_tarefas->remover_tarefa($_GET['id']);
 
 header('Location: tarefas.php');

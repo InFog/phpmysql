@@ -14,8 +14,12 @@ class RepositorioTarefas
         $nome = $tarefa->getNome();
         $descricao = $tarefa->getDescricao();
         $prioridade = $tarefa->getPrioridade();
-        $prazo = $tarefa->getPrazo()->format('Y-m-d');
+        $prazo = $tarefa->getPrazo();
         $concluida = ($tarefa->getConcluida()) ? 1 : 0;
+
+        if (is_object($prazo)) {
+            $prazo = $prazo->format('Y-m-d');
+        }
 
         $sqlGravar = "
             INSERT INTO tarefas
@@ -39,8 +43,13 @@ class RepositorioTarefas
         $nome = $tarefa->getNome();
         $descricao = $tarefa->getDescricao();
         $prioridade = $tarefa->getPrioridade();
-        $prazo = $tarefa->getPrazo()->format('Y-m-d');
+        $repositorio_tarefas->remover_tarefa($_GET['id']);
+        $prazo = $tarefa->getPrazo();
         $concluida = ($tarefa->getConcluida()) ? 1 : 0;
+
+        if (is_object($prazo)) {
+            $prazo = $prazo->format('Y-m-d');
+        }
 
         $sqlEditar = "
             UPDATE tarefas SET
@@ -106,10 +115,10 @@ class RepositorioTarefas
         return $anexos;
     }
 
-    function remover_tarefa($mysqli, $id)
+    function remover_tarefa($id)
     {
         $sqlRemover = "DELETE FROM tarefas WHERE id = {$id}";
 
-        $mysqli->query($sqlRemover);
+        $this->bd->query($sqlRemover);
     }
 }

@@ -3,56 +3,56 @@
 include "config.php";
 include "banco.php";
 include "ajudantes.php";
-include "classes/Tarefas.php";
+include "classes/Tarefa.php";
+include "classes/Anexo.php";
+include "classes/RepositorioTarefas.php";
 
-$tarefas = new Tarefas($mysqli);
+$repositorio_tarefas = new RepositorioTarefas($mysqli);
+$tarefa = $repositorio_tarefas->buscar_tarefa($_GET['id']);
 
 $exibir_tabela = false;
 $tem_erros = false;
 $erros_validacao = array();
 
 if (tem_post()) {
-    $tarefa = array();
-
-    $tarefa['id'] = $_POST['id'];
 
     if (isset($_POST['nome']) && strlen($_POST['nome']) > 0) {
-        $tarefa['nome'] = $_POST['nome'];
+        $tarefa->setNome($_POST['nome']);
     } else {
         $tem_erros = true;
         $erros_validacao['nome'] = 'O nome da tarefa é obrigatório!';
     }
 
     if (isset($_POST['descricao'])) {
-        $tarefa['descricao'] = $_POST['descricao'];
+        $tarefa->setDescricao($_POST['descricao']);
     } else {
-        $tarefa['descricao'] = '';
+        $tarefa->setDescricao('');
     }
 
     if (isset($_POST['prazo']) && strlen($_POST['prazo']) > 0) {
         if (validar_data($_POST['prazo'])) {
-            $tarefa['prazo'] = traduz_data_para_banco($_POST['prazo']);
+            $tarefa->setPrazo(traduz_data_br_para_objeto($_POST['prazo']));
         } else {
             $tem_erros = true;
             $erros_validacao['prazo'] = 'O prazo não é uma data válida!';
         }
     } else {
-        $tarefa['prazo'] = '';
+        $tarefa->setPrazo('');
     }
 
-    $tarefa['prioridade'] = $_POST['prioridade'];
+    $tarefa->setPrioridade($_POST['prioridade']);
 
     if (isset($_POST['concluida'])) {
-        $tarefa['concluida'] = 1;
+        $tarefa->setConcluida(true);
     } else {
-        $tarefa['concluida'] = 0;
+        $tarefa->setConcluida(false);
     }
 
     if (! $tem_erros) {
-        $tarefas->editar_tarefa($tarefa);
+        $repositorio_tarefas->editar_tarefa($tarefa);
 
         if (isset($_POST['lembrete']) && $_POST['lembrete'] == '1') {
-            $anexos = buscar_anexos($mysqli, $tarefa['id']);
+            $anexos = $repositorio_tarefas->buscar_anexos($tarefa->getId());
 
             enviar_email($tarefa, $anexos);
         }
@@ -61,14 +61,5 @@ if (tem_post()) {
         die();
     }
 }
-
-$tarefas->buscar_tarefa($_GET['id']);
-$tarefa = $tarefas->tarefa;
-
-$tarefa['nome'] = (isset($_POST['nome'])) ? $_POST['nome'] : $tarefa['nome'];
-$tarefa['descricao'] = (isset($_POST['descricao'])) ? $_POST['descricao'] : $tarefa['descricao'];
-$tarefa['prazo'] = (isset($_POST['prazo'])) ? $_POST['prazo'] : $tarefa['prazo'];
-$tarefa['prioridade'] = (isset($_POST['prioridade'])) ? $_POST['prioridade'] : $tarefa['prioridade'];
-$tarefa['concluida'] = (isset($_POST['concluida'])) ? $_POST['concluida'] : $tarefa['concluida'];
 
 include "template.php";

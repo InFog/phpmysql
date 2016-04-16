@@ -22,15 +22,15 @@ function enviar_email($tarefa, $anexos = array())
     $email->Port = 587;
     $email->SMTPSecure = 'tls';
     $email->SMTPAuth = true;
-    $email->Username = "meuemail@email.com";
-    $email->Password = "minhasenha";
-    $email->setFrom("meuemail@email.com", "Avisador de Tarefas");
+    $email->Username = "seuemail@dominio.com";
+    $email->Password = "senhasecreta";
+    $email->setFrom("seuemail@dominio.com", "Avisador de Tarefas");
     $email->addAddress(EMAIL_NOTIFICACAO);
-    $email->Subject = "Aviso de tarefa: {$tarefa['nome']}";
+    $email->Subject = "Aviso de tarefa: {$tarefa->getNome()}";
     $email->msgHTML($corpo);
 
     foreach ($anexos as $anexo) {
-        $email->addAttachment("anexos/{$anexo['arquivo']}");
+        $email->addAttachment("anexos/{$anexo->getArquivo()}");
     }
 
     $email->send();
@@ -171,6 +171,10 @@ function traduz_data_br_para_objeto($data)
 
 function traduz_data_para_exibir($data)
 {
+    if (is_object($data) && get_class($data) == "DateTime") {
+        return $data->format("d/m/Y");
+    }
+
     if ($data == "" OR $data == "0000-00-00") {
         return "";
     }
