@@ -9,6 +9,16 @@ class Tarefa
     private $prioridade;
     private $concluida;
 
+    /**
+     * @var Array de Anexo
+     */
+    private $anexos;
+
+    public function __construct()
+    {
+        $this->anexos = [];
+    }
+
     public function setId($id)
     {
         $this->id = $id;
@@ -67,5 +77,22 @@ class Tarefa
     public function getConcluida()
     {
         return $this->concluida;
+    }
+
+    public function setAnexos(array $anexos)
+    {
+        foreach ($anexos as $anexo) {
+            $this->adicionarAnexo($anexo);
+        }
+    }
+
+    public function adicionarAnexo(Anexo $anexo)
+    {
+        array_push($this->anexos, $anexo);
+    }
+
+    public function getAnexos()
+    {
+        return $this->anexos;
     }
 }

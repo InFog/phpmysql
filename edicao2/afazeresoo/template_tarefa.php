@@ -17,13 +17,13 @@
 
             <h2>Anexos</h2>
             <!-- lista de anexos -->
-            <?php if (count($anexos) > 0) : ?>
+            <?php if (count($tarefa->getAnexos()) > 0) : ?>
                 <table>
                     <tr>
                         <th>Arquivo</th>
                         <th>Opções</th>
                     </tr>
-                    <?php foreach ($anexos as $anexo) : ?>
+                    <?php foreach ($tarefa->getAnexos() as $anexo) : ?>
                         <tr>
                             <td><?php echo $anexo->getNome(); ?></td>
                             <td>

@@ -72,6 +72,7 @@ class RepositorioTarefas
         $tarefas = [];
 
         while ($tarefa = $resultado->fetch_object('Tarefa')) {
+            $tarefa->setAnexos($this->buscar_anexos($tarefa->getId()));
             $tarefas[] = $tarefa;
         }
 
@@ -83,7 +84,10 @@ class RepositorioTarefas
         $sqlBusca = 'SELECT * FROM tarefas WHERE id = ' . $id;
         $resultado = $this->bd->query($sqlBusca);
 
-        return $resultado->fetch_object('Tarefa');
+        $tarefa = $resultado->fetch_object('Tarefa');
+        $tarefa->setAnexos($this->buscar_anexos($tarefa->getId()));
+
+        return $tarefa;
     }
 
     function gravar_anexo(Anexo $anexo)

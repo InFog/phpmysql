@@ -37,6 +37,5 @@ if (tem_post()) {
 }
 
 $tarefa = $repositorio_tarefas->buscar_tarefa($_GET['id']);
-$anexos = $repositorio_tarefas->buscar_anexos($_GET['id']);
 
 include "template_tarefa.php";
