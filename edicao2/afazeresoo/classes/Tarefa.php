@@ -81,6 +81,8 @@ class Tarefa
 
     public function setAnexos(array $anexos)
     {
+        $this->anexos = [];
+
         foreach ($anexos as $anexo) {
             $this->adicionarAnexo($anexo);
         }
