@@ -32,10 +32,10 @@ if (tem_post()) {
     }
 
     if (! $tem_erros) {
-        $repositorio_tarefas->gravar_anexo($anexo);
+        $repositorio_tarefas->salvar_anexo($anexo);
     }
 }
 
-$tarefa = $repositorio_tarefas->buscar_tarefa($_GET['id']);
+$tarefa = $repositorio_tarefas->buscar($_GET['id']);
 
 include "template_tarefa.php";

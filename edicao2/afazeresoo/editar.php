@@ -1,14 +1,14 @@
 <?php
 
-include "config.php";
-include "banco.php";
-include "ajudantes.php";
-include "classes/Tarefa.php";
-include "classes/Anexo.php";
-include "classes/RepositorioTarefas.php";
+require "config.php";
+require "banco.php";
+require "ajudantes.php";
+require "classes/Tarefa.php";
+require "classes/Anexo.php";
+require "classes/RepositorioTarefas.php";
 
 $repositorio_tarefas = new RepositorioTarefas($mysqli);
-$tarefa = $repositorio_tarefas->buscar_tarefa($_GET['id']);
+$tarefa = $repositorio_tarefas->buscar($_GET['id']);
 
 $exibir_tabela = false;
 $tem_erros = false;
@@ -49,12 +49,10 @@ if (tem_post()) {
     }
 
     if (! $tem_erros) {
-        $repositorio_tarefas->editar_tarefa($tarefa);
+        $repositorio_tarefas->editar($tarefa);
 
         if (isset($_POST['lembrete']) && $_POST['lembrete'] == '1') {
-            $anexos = $repositorio_tarefas->buscar_anexos($tarefa->getId());
-
-            enviar_email($tarefa, $anexos);
+            enviar_email($tarefa);
         }
 
         header('Location: tarefas.php');

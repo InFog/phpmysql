@@ -1,10 +1,10 @@
 <?php
 
-include "config.php";
-include "banco.php";
-include "classes/RepositorioTarefas.php";
+require "config.php";
+require "banco.php";
+require "classes/RepositorioTarefas.php";
 
 $repositorio_tarefas = new RepositorioTarefas($mysqli);
-$repositorio_tarefas->remover_tarefa($_GET['id']);
+$repositorio_tarefas->remover($_GET['id']);
 
 header('Location: tarefas.php');

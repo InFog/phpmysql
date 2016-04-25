@@ -49,7 +49,7 @@ if (tem_post()) {
     }
 
     if (! $tem_erros) {
-        $repositorio_tarefas->gravar_tarefa($tarefa);
+        $repositorio_tarefas->salvar($tarefa);
 
         if (isset($_POST['lembrete']) && $_POST['lembrete'] == '1') {
             enviar_email($tarefa);
@@ -60,6 +60,6 @@ if (tem_post()) {
     }
 }
 
-$tarefas = $repositorio_tarefas->buscar_tarefas();
+$tarefas = $repositorio_tarefas->buscar();
 
 include "template.php";

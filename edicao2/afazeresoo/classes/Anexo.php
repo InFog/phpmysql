@@ -3,7 +3,7 @@
 class Anexo
 {
     private $id;
-    private $tarefaId;
+    private $tarefa_id;
     private $nome;
     private $arquivo;
 
@@ -17,14 +17,14 @@ class Anexo
         return $this->id;
     }
 
-    public function setTarefaId($tarefaId)
+    public function setTarefaId($tarefa_id)
     {
-        $this->tarefaId = $tarefaId;
+        $this->tarefa_id = $tarefa_id;
     }
 
     public function getTarefaId()
     {
-        return $this->tarefaId;
+        return $this->tarefa_id;
     }
 
     public function setNome($nome)

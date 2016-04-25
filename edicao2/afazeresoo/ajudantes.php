@@ -9,11 +9,11 @@ function tem_post()
     return false;
 }
 
-function enviar_email($tarefa, $anexos = array())
+function enviar_email($tarefa)
 {
     include "bibliotecas/PHPMailer/PHPMailerAutoload.php";
 
-    $corpo = preparar_corpo_email($tarefa, $anexos);
+    $corpo = preparar_corpo_email($tarefa);
 
     $email = new PHPMailer();
 
@@ -29,14 +29,14 @@ function enviar_email($tarefa, $anexos = array())
     $email->Subject = "Aviso de tarefa: {$tarefa->getNome()}";
     $email->msgHTML($corpo);
 
-    foreach ($anexos as $anexo) {
+    foreach ($tarefa->getAnexos() as $anexo) {
         $email->addAttachment("anexos/{$anexo->getArquivo()}");
     }
 
     $email->send();
 }
 
-function preparar_corpo_email($tarefa, $anexos)
+function preparar_corpo_email($tarefa)
 {
     ob_start();
     include "template_email.php";
