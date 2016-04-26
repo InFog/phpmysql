@@ -7,7 +7,7 @@ include "classes/Tarefa.php";
 include "classes/Anexo.php";
 include "classes/RepositorioTarefas.php";
 
-$repositorio_tarefas = new RepositorioTarefas($mysqli);
+$repositorio_tarefas = new RepositorioTarefas($pdo);
 
 $tem_erros = false;
 $erros_validacao = array();

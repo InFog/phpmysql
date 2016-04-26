@@ -5,7 +5,7 @@ require "banco.php";
 require "classes/Anexo.php";
 require "classes/RepositorioTarefas.php";
 
-$repositorio_tarefas = new RepositorioTarefas($mysqli);
+$repositorio_tarefas = new RepositorioTarefas($pdo);
 $anexo = $repositorio_tarefas->buscar_anexo($_GET['id']);
 $repositorio_tarefas->remover_anexo($anexo->getId());
 unlink('anexos/' . $anexo->getArquivo());
