@@ -2,11 +2,11 @@
 
 class RepositorioTarefas
 {
-    private $bd;
+    private $pdo;
 
-    public function __construct($bd)
+    public function __construct(PDO $pdo)
     {
-        $this->bd = $bd;
+        $this->pdo = $pdo;
     }
 
     public function salvar(Tarefa $tarefa)
@@ -76,11 +76,15 @@ class RepositorioTarefas
     private function buscar_tarefas()
     {
         $sqlBusca = 'SELECT * FROM tarefas';
-        $resultado = $this->bd->query($sqlBusca);
+        $resultado = $this->pdo->query(
+            $sqlBusca,
+            PDO::FETCH_CLASS,
+            'Tarefa'
+        );
 
         $tarefas = [];
 
-        while ($tarefa = $resultado->fetch_object('Tarefa')) {
+        foreach ($resultado as $tarefa) {
             $tarefa->setAnexos($this->buscar_anexos($tarefa->getId()));
             $tarefas[] = $tarefa;
         }
@@ -116,12 +120,15 @@ class RepositorioTarefas
 
     public function buscar_anexos($tarefa_id)
     {
-        $sqlBusca = "SELECT * FROM anexos WHERE tarefa_id = {$tarefa_id}";
-        $resultado = $this->bd->query($sqlBusca);
+        $sqlBusca = "SELECT * FROM anexos WHERE tarefa_id = :tarefa_id";
+        $query = $this->pdo->prepare($sqlBusca);
+        $query->execute([
+            "tarefa_id" => $tarefa_id,
+        ]);
 
         $anexos = array();
 
-        while ($anexo = $resultado->fetch_object('Anexo')) {
+        while ($anexo = $query->fetchObject('Anexo')) {
             $anexos[] = $anexo;
         }
 
