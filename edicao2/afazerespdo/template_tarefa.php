@@ -6,12 +6,12 @@
     </head>
     <body>
         <div id="bloco_principal">
-            <h1>Tarefa: <?php echo $tarefa->getNome(); ?></h1>
+            <h1>Tarefa: <?php echo htmlentities($tarefa->getNome()); ?></h1>
 
             <p><a href="tarefas.php">Voltar para a lista de tarefas</a>.</p>
 
             <p><strong>Concluída:</strong> <?php echo traduz_concluida($tarefa->getConcluida()); ?></p>
-            <p><strong>Descrição:</strong> <?php echo nl2br($tarefa->getDescricao()); ?></p>
+            <p><strong>Descrição:</strong> <?php echo nl2br(htmlentities($tarefa->getDescricao())); ?></p>
             <p><strong>Prazo:</strong> <?php echo traduz_data_para_exibir($tarefa->getPrazo()); ?></p>
             <p><strong>Prioridade:</strong> <?php echo traduz_prioridade($tarefa->getPrioridade()); ?></p>
 

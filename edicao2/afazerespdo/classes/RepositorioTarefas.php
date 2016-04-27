@@ -34,13 +34,7 @@ class RepositorioTarefas
 
     public function atualizar(Tarefa $tarefa)
     {
-        $id = $tarefa->getId();
-        $nome = $tarefa->getNome();
-        $descricao = $tarefa->getDescricao();
-        $prioridade = $tarefa->getPrioridade();
-        $repositorio_tarefas->remover_tarefa($_GET['id']);
         $prazo = $tarefa->getPrazo();
-        $concluida = ($tarefa->getConcluida()) ? 1 : 0;
 
         if (is_object($prazo)) {
             $prazo = $prazo->format('Y-m-d');
@@ -48,15 +42,24 @@ class RepositorioTarefas
 
         $sqlEditar = "
             UPDATE tarefas SET
-                nome = '{$nome}',
-                descricao = '{$descricao}',
-                prioridade = {$prioridade},
-                prazo = '{$prazo}',
-                concluida = {$concluida}
-            WHERE id = {$id}
+                nome = :nome,
+                descricao = :descricao,
+                prioridade = :prioridade,
+                prazo = :prazo,
+                concluida = :concluida
+            WHERE id = :id
         ";
 
-        $this->bd->query($sqlEditar);
+        $query = $this->pdo->prepare($sqlEditar);
+
+        $query->execute([
+            'nome' => $tarefa->getNome(),
+            'descricao' => $tarefa->getDescricao(),
+            'prioridade' => $tarefa->getPrioridade(),
+            'prazo' => $prazo,
+            'concluida' => ($tarefa->getConcluida()) ? 1 : 0,
+            'id' => $tarefa->getId(),
+        ]);
     }
 
     public function buscar($tarefa_id = 0)
@@ -146,9 +149,13 @@ class RepositorioTarefas
 
     public function remover($id)
     {
-        $sqlRemover = "DELETE FROM tarefas WHERE id = {$id}";
+        $sqlRemover = "DELETE FROM tarefas WHERE id = :id";
 
-        $this->bd->query($sqlRemover);
+        $query = $this->pdo->prepare($sqlRemover);
+
+        $query->execute([
+            'id' => $id,
+        ]);
     }
 
     public function remover_anexo($id)

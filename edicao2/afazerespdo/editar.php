@@ -7,7 +7,7 @@ require "classes/Tarefa.php";
 require "classes/Anexo.php";
 require "classes/RepositorioTarefas.php";
 
-$repositorio_tarefas = new RepositorioTarefas($mysqli);
+$repositorio_tarefas = new RepositorioTarefas($pdo);
 $tarefa = $repositorio_tarefas->buscar($_GET['id']);
 
 $exibir_tabela = false;
@@ -49,7 +49,7 @@ if (tem_post()) {
     }
 
     if (! $tem_erros) {
-        $repositorio_tarefas->editar($tarefa);
+        $repositorio_tarefas->atualizar($tarefa);
 
         if (isset($_POST['lembrete']) && $_POST['lembrete'] == '1') {
             enviar_email($tarefa);
