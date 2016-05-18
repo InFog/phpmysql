@@ -24,8 +24,8 @@ class RepositorioTarefas
         ";
         $query = $this->pdo->prepare($sqlGravar);
         $query->execute([
-            'nome' => $tarefa->getNome(),
-            'descricao' => $tarefa->getDescricao(),
+            'nome' => strip_tags($tarefa->getNome()),
+            'descricao' => strip_tags($tarefa->getDescricao()),
             'prioridade' => $tarefa->getPrioridade(),
             'prazo' => $prazo,
             'concluida' => ($tarefa->getConcluida()) ? 1 : 0,
@@ -53,8 +53,8 @@ class RepositorioTarefas
         $query = $this->pdo->prepare($sqlEditar);
 
         $query->execute([
-            'nome' => $tarefa->getNome(),
-            'descricao' => $tarefa->getDescricao(),
+            'nome' => strip_tags($tarefa->getNome()),
+            'descricao' => strip_tags($tarefa->getDescricao()),
             'prioridade' => $tarefa->getPrioridade(),
             'prazo' => $prazo,
             'concluida' => ($tarefa->getConcluida()) ? 1 : 0,

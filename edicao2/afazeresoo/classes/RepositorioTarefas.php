@@ -43,7 +43,6 @@ class RepositorioTarefas
         $nome = $tarefa->getNome();
         $descricao = $tarefa->getDescricao();
         $prioridade = $tarefa->getPrioridade();
-        $repositorio_tarefas->remover_tarefa($_GET['id']);
         $prazo = $tarefa->getPrazo();
         $concluida = ($tarefa->getConcluida()) ? 1 : 0;
 
