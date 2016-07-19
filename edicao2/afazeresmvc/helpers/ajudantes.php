@@ -30,7 +30,7 @@ function enviar_email($tarefa)
     $email->msgHTML($corpo);
 
     foreach ($tarefa->getAnexos() as $anexo) {
-        $email->addAttachment("anexos/{$anexo->getArquivo()}");
+        $email->addAttachment(__DIR__ . "/../anexos/{$anexo->getArquivo()}");
     }
 
     $email->send();
