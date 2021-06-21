@@ -1,0 +1,19 @@
+{
+    "name": "infog/tarefas",
+    "description": "Um sistema de tarefas",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Tarefas\\Models\\": "models"
+        }
+    },
+    "require": {
+        "phpmailer/phpmailer": "^6.4"
+    },
+    "authors": [
+        {
+            "name": "Evaldo Bento",
+            "email": "evaldojuniorbento@gmail.com"
+        }
+    ]
+}

@@ -1,0 +1,68 @@
+body {
+    font-family: Sans-serif;
+    color: #333;
+    background-color: #555;
+    font-size: 1em;
+}
+
+h1 {
+    text-align: center;
+}
+
+.erro {
+    color: #F44;
+}
+
+fieldset {
+    border: 1px solid #333;
+    color: #333;
+    margin: 10px 0 0 0;
+}
+
+label {
+    display: block;
+    margin: 10px 0 0 0;
+}
+
+input[type=text],
+textarea {
+    width: 100%;
+    border: 1px solid #333;
+    padding: 0.5em;
+    font-size: 1.2em;
+}
+
+input[type=submit] {
+    float: right;
+    clear: both;
+    background-color: #0D68C2;
+}
+
+.botao {
+    padding: 1em;
+    color: #FFF;
+    font-weight: bold;
+    border: 0;
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+}
+
+table th {
+    background-color: #EEE;
+    font-size: 18px;
+}
+
+table td {
+    border-bottom: 1px solid #333;
+    color: #000;
+}
+
+#bloco_principal {
+    width: 600px;
+    background-color: #FFF;
+    padding: 1em;
+    margin: 0 auto 0 auto;
+}
